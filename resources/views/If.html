@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/LandingPage.css">
+    <title>Demo Inventory Management System</title>
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-menu">
+            <nav>
+                <ul>
+                    <div class="men-menu">
+                        <h3 class="menuv">Main Menu</h3>
+                    </div>
+                    <li>
+                        <a href="LandingPage.html">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span class="remove-ellipsis">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Frf.html">
+                            <i class="fa-solid fa-computer"></i>
+                            <span class="remove-ellipsis">Facilities Request Form</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="active">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            <span class="remove-ellipsis">Inventory Form</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Report.html">
+                            <i class="fa-solid fa-file"></i>
+                            <span class="remove-ellipsis">Report</span>
+                        </a>
+                    </li>
+                
+                    <div class="men-menu">
+                        <h3 class="menuv">Help & info</h3>
+                    </div>
+                
+                    <li>
+                        <a href="" class="">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span class="remove-ellipsis">Help & Center</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="remove-ellipsis">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+            </h2>
+
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search Here">    
+            </div>
+        </header>
+
+        <div class="notif-wrapper">
+            <div class="noti-bell" onclick="notifToggle();">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="notif-menu">
+                <h3>NO NOTIFICAITON</h3>
+            </div>
+        </div>
+
+        <div class="user-wrapper">
+            <div class="select" onclick="profToggle();">
+                <img src="Image/userSample.jpg" width="20px" height="20px" alt="">
+                <div>
+                    <h4>Kim Tuano</h4>
+                    <small>ADMIN</small>
+                </div> 
+            </div>
+            <div class="prof-menu">
+                <h3>KIM TUANO<br><span>ADMIN</span></h3>
+                <ul>
+                    <li><i class="fa-solid fa-user"></i><a href="EditPage.html">Profile<a></li>
+                    <li><i class="fa-solid fa-right-from-bracket"></i><a href="CNDLogin.html">Logout<a></li>
+                </ul>
+            </div>  
+        </div>
+    </div>
+
+    <footer id="ICTDU-foot">
+        <img src="Image/ICTDU_LOGO.jpg" alt="" width="50px" height="50px" class="logoICTDU">
+        <nav class="copyright">
+            <a href="">
+                <span class="adjustcr">© 2024 DemoIMC from ICTDU</span>
+            </a>
+        </nav>
+    </footer>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="js/LandingPage.js"></script>
+</body>
+</html>

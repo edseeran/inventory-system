@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/LandingPage.css">
+    <title>Demo Inventory Management System</title>
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-menu">
+            <nav>
+                <ul>
+                    <div class="men-menu">
+                        <h3 class="menuv">Main Menu</h3>
+                    </div>
+                    <li>
+                        <a href="LandingPage.html">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span class="remove-ellipsis">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="active">
+                            <i class="fa-solid fa-computer"></i>
+                            <span class="remove-ellipsis">Facilities Request Form</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="If.html">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            <span class="remove-ellipsis">Inventory Form</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Report.html">
+                            <i class="fa-solid fa-file"></i>
+                            <span class="remove-ellipsis">Report</span>
+                        </a>
+                    </li>
+                
+                    <div class="men-menu">
+                        <h3 class="menuv">Help & info</h3>
+                    </div>
+                
+                    <li>
+                        <a href="" class="">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span class="remove-ellipsis">Help & Center</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="remove-ellipsis">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+            </h2>
+
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search Here">    
+            </div>
+        </header>
+
+        <div class="notif-wrapper">
+            <div class="noti-bell" onclick="notifToggle();">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="notif-menu">
+                <h3>NO NOTIFICAITON</h3>
+            </div>
+        </div>
+
+        <div class="user-wrapper">
+            <div class="select" onclick="profToggle();">
+                <img src="Image/userSample.jpg" width="20px" height="20px" alt="">
+                <div>
+                    <h4>Kim Tuano</h4>
+                    <small>ADMIN</small>
+                </div> 
+            </div>
+            <div class="prof-menu">
+                <h3>KIM TUANO<br><span>ADMIN</span></h3>
+                <ul>
+                    <li><i class="fa-solid fa-user"></i><a href="EditPage.html">Profile<a></li>
+                    <li><i class="fa-solid fa-right-from-bracket"></i><a href="CNDLogin.html">Logout<a></li>
+                </ul>
+            </div>  
+        </div>
+    </div>
+
+    <main>
+        <div class="page-head">
+            <div class="page-title">
+                <h2><div class="sms">Facilities Request Form</div></h2>
+            </div>       
+        </div>
+
+        <div class="recent-grid">
+            <div class="projects">
+                <div class="card">
+                    <div class="class-header1">
+                        <div class="search-id">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" placeholder="Brand">    
+                        </div>
+                        <div class="search-cus">
+                            <input type="search" placeholder="Date Purchased">    
+                        </div>
+                        <div class="search-mop">
+                            <input type="search" placeholder="Item Serial#">    
+                        </div>
+                    </div>
+
+                    <div class="class-header2">
+                        <div class="filter-btn">
+                            <button>Add Filter</button>
+                        </div>
+
+                        <div class="data-toggle">
+                            <div class="data-bar" onclick="dataToggle();">
+                                <h5>Last Modified On</h5>
+                            </div>
+                            <div class="data-menu">
+                                <ul>
+                                    <li><a>Last Modified On</a></li>
+                                    <li><a>Text Message<a></li>
+                                    <li><a>Progress<a></li>
+                                    <li><a>Name</a></li>
+                                    <li><a>Created On<a></li>
+                                    <li><a>Most Used<a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="sort-day">
+                            <i class="fa-regular fa-circle-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Full Name</td>
+                                    <td>Contact Number</td>
+                                    <td>Room/Unit No.</td>
+                                    <td>Cost</td>
+                                    <td>20 of 500</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Ofelia Garcia</td>
+                                    <td>09672993511</td>
+                                    <td>402</td>
+                                    <td>1,100 ₱</td>
+                                    <td>3s</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Princess Driz</td>
+                                    <td>09872613989</td>
+                                    <td>307</td>
+                                    <td>1,300 ₱</td>
+                                    <td>20s</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Mary Joy Catapang</td>
+                                    <td>09982736218</td>
+                                    <td>314</td>
+                                    <td>515 ₱</td>
+                                    <td>1m</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Patrick Cayanan</td>
+                                    <td>09123894736</td>
+                                    <td>101</td>
+                                    <td>2,900 ₱</td>
+                                    <td>33m</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="selectAllCheckbox" class="checkmarg"></td>
+                                    <td>Edwin Dimapilis</td>
+                                    <td>09392817369</td>
+                                    <td>515</td>
+                                    <td>260 ₱</td>
+                                    <td>2h</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="customers">
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer id="ICTDU-foot">
+        <img src="Image/ICTDU_LOGO.jpg" alt="" width="50px" height="50px" class="logoICTDU">
+        <nav class="copyright">
+            <a href="">
+                <span class="adjustcr">© 2024 DemoIMC from ICTDU</span>
+            </a>
+        </nav>
+    </footer>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="js/LandingPage.js"></script>
+</body>
+</html>

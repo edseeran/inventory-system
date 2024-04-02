@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/EditPage.css">
+    <title>Demo Inventory Management System</title>
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search Here">    
+            </div>
+        </header>
+
+        <div class="notif-wrapper">
+            <div class="noti-bell" onclick="notifToggle();">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="notif-menu">
+                <h3>NO NOTIFICAITON</h3>
+            </div>
+        </div>
+
+        <div class="user-wrapper">
+            <div class="select" onclick="profToggle();">
+                <img src="Image/userSample.jpg" width="20px" height="20px" alt="">
+                <div>
+                    <h4>Kim Tuano</h4>
+                    <small>Project Manager</small>
+                </div> 
+            </div>
+            <div class="prof-menu">
+                <h3>KIM TUANO<br><span>PROJECT Manager</span></h3>
+                <ul>
+                    <li><i class="fa-solid fa-user"></i><a href="">Profile<a></li>
+                    <li><i class="fa-solid fa-right-from-bracket"></i><a href="CNDLogin.html">Logout<a></li>
+                </ul>
+            </div>  
+        </div>
+    </div>
+
+    <main>
+        <div class="page-head">
+            <div class="page-title">
+                <h2><div class="sms">Edit Profile</div></h2>
+            </div>     
+        </div>
+        
+        <div class="container">
+            <div class="leftbox">
+                <nav>
+                    <a onclick="tabs(0)" class="tab">
+                        General
+                    </a>
+                    <a onclick="tabs(1)" class="tab">
+                        Change Password
+                    </a>
+                    <a onclick="tabs(2)" class="tab">
+                        Information
+                    </a>
+                    <a onclick="tabs(3)" class="tab">
+                        Social Links
+                    </a>
+                    <a onclick="tabs(4)" class="tab">
+                        Connections
+                    </a>
+                </nav>
+            </div>
+            <div class="rightbox">
+                <div class="General tabshow">
+                    <div class="upload-pic">
+                        <img src="Image/userSample.jpg" alt="" width="50px" height="50px" class="siza-image">
+                        <div class="media-body ml-4">
+                            <label class="btn-outline-primary">
+                                Upload new photo
+                                <input type="file" class="account-settings-fileinput">
+                            </label> &nbsp;
+                            <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                            <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                        </div>
+                    </div>
+                    <h1>Personal Info</h1>
+                    <h2>Last Name</h2>
+                    <input type="text" class="input" value="Cayanan">
+                    <h2>First Name</h2>
+                    <input type="text" class="input" value="Patrick">
+                    <h2>Phone Number</h2>
+                    <input type="text" class="input" value="09XX-XXX-XXXX">
+                    <h2>Email</h2>
+                    <input type="text" class="input" value="Example@user.com">
+                    <h2>Gender</h2>
+                    <label><input type="checkbox"> Male</label>
+                    <label><input type="checkbox"> Female</label>
+                    <button class="btns">Update</button>
+                </div>   
+                <div class="chpassword tabshow">
+                    <h1>Change Password</h1>
+                    <h2>Current Password</h2>
+                    <input type="password" class="input" value="brightcode">
+                    <h2>New Password</h2>
+                    <input type="password" class="input" value="brightcode">
+                    <h2>Confirm Password</h2>
+                    <input type="password" class="input" value="brightcode">
+
+                    <button class="btns">Update</button>
+                </div>    
+                <div class="information tabshow">
+                    <div class="form-group">
+                        <label class="form-label">Bio</label>
+                        <textarea class="form-control"
+                            rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Birthday</label>
+                        <input type="text" class="form-control" value="May 3, 1995">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Country</label>
+                        <select class="custom-select">
+                            <option>USA</option>
+                            <option selected>Canada</option>
+                            <option>UK</option>
+                            <option>Germany</option>
+                            <option>France</option>
+                        </select>
+                    </div>
+
+                    <button class="btns">Update</button>
+                </div> 
+                <div class="sociallinks tabshow">
+                    <div class="form-group">
+                        <label class="form-label">Twitter</label>
+                        <input type="text" class="form-control" value="https://twitter.com/user">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Facebook</label>
+                        <input type="text" class="form-control" value="https://www.facebook.com/user">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Google+</label>
+                        <input type="text" class="form-control" value>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">LinkedIn</label>
+                        <input type="text" class="form-control" value>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Instagram</label>
+                        <input type="text" class="form-control" value="https://www.instagram.com/user">
+                    </div>
+
+                    <button class="btns">Update</button>
+                </div>    
+            </div>
+        </div>
+    </main>
+
+    <footer id="ICTDU-foot">
+        <img src="Image/ICTDU_LOGO.jpg" alt="" width="50px" height="50px" class="logoICTDU">
+        <nav class="copyright">
+            <a href="">
+                <span class="adjustcr">© 2024 DemoIMC from ICTDU</span>
+            </a>
+        </nav>
+    </footer>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="js/EditPage.js"></script>
+</body>
+</html>
