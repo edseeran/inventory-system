@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "ae573b45-c426-4fc0-9553-7c5d93305365",
+		"name": "Department",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17787997",
+		"_collection_link": "https://bold-desert-316603.postman.co/workspace/INVENTORY-SYSTEM~f274fd7a-c30a-43a9-adce-d61d05802280/collection/17787997-ae573b45-c426-4fc0-9553-7c5d93305365?action=share&source=collection_link&creator=17787997"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/department/index",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"department",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/department/show/666261",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"department",
+						"show",
+						"666261"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "d84a65cc-deeb-42d0-b857-72252cd04849"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "departmentCode",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "departmentName",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "departmentType",
+							"value": "ACADEMIC",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/department/create",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"department",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "9129d4df-10af-4f14-8a92-0c8fcf43c0cd"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "departmentCode",
+							"value": "ICTDU",
+							"type": "text"
+						},
+						{
+							"key": "departmentName",
+							"value": "INFORMATION AND COMMUNICATIONS TECHNOLOGY DEVELOPMENT UNIT",
+							"type": "text"
+						},
+						{
+							"key": "departmentType",
+							"value": "ACADEMIC",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/department/update/932693",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"department",
+						"update",
+						"932693"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "b97883f9-dc2d-479d-b14d-58040e5fcb70"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/department/delete/555831",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"department",
+						"delete",
+						"555831"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

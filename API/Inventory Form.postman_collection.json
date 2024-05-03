@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "e6938294-42a3-4c3b-b9d4-b3f3c5fbe05e",
+		"name": "Inventory Form",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17787997",
+		"_collection_link": "https://bold-desert-316603.postman.co/workspace/INVENTORY-SYSTEM~f274fd7a-c30a-43a9-adce-d61d05802280/collection/17787997-e6938294-42a3-4c3b-b9d4-b3f3c5fbe05e?action=share&source=collection_link&creator=17787997"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/inventory-form/index",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"inventory-form",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/inventory-form/delete/670858",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"inventory-form",
+						"delete",
+						"670858"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "d3a18e03-9efe-48ac-987f-66bb36cf296d"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "department",
+							"value": "ICTDU",
+							"type": "text"
+						},
+						{
+							"key": "facilityType",
+							"value": "OFFICE",
+							"type": "text"
+						},
+						{
+							"key": "otherFacilityType",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "asOfDate",
+							"value": "2024-05-03",
+							"type": "text"
+						},
+						{
+							"key": "item",
+							"value": "MONITOR",
+							"type": "text"
+						},
+						{
+							"key": "brand",
+							"value": "SAMSUNG",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "itemSerialNumber",
+							"value": "02158453514",
+							"type": "text"
+						},
+						{
+							"key": "datePurchased",
+							"value": "2024-05-01",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "50000",
+							"type": "text"
+						},
+						{
+							"key": "dateIssued",
+							"value": "2024-05-02",
+							"type": "text"
+						},
+						{
+							"key": "itemStatus",
+							"value": "WORKING",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/inventory-form/create",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"inventory-form",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "c7f755e0-538e-484a-b9e8-8ef892e515ee",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17787997",
+		"_collection_link": "https://bold-desert-316603.postman.co/workspace/INVENTORY-SYSTEM~f274fd7a-c30a-43a9-adce-d61d05802280/collection/17787997-c7f755e0-538e-484a-b9e8-8ef892e515ee?action=share&source=collection_link&creator=17787997"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "37d67a41-8d91-42e0-84c3-1f844d6aac85"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "role",
+							"value": "SUPER ADMIN",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "Marvin",
+							"type": "text"
+						},
+						{
+							"key": "middleName",
+							"value": "Cortez",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Reyes",
+							"type": "text"
+						},
+						{
+							"key": "employeeNumber",
+							"value": "01232501",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/account/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "141b499f-714d-4b1a-920d-7dbc6b2294cf"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "role",
+							"value": "SUPER ADMIN",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marvin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "middleName",
+							"value": "Cortez",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Reyes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "employeeNumber",
+							"value": "123456789",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/account/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Index",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "dc329fb2-ae56-4e6a-893f-cd45d6c4c493"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "role",
+							"value": "SUPER ADMIN",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marvin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "middleName",
+							"value": "Cortez",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Reyes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "employeeNumber",
+							"value": "01232501",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/account/index",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "14eea310-1f3f-47ae-bda8-b8b7eab3bbe1"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "role",
+							"value": "SUPER ADMIN",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marvin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "middleName",
+							"value": "Cortez",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Reyes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "employeeNumber",
+							"value": "01232501",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/account/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
