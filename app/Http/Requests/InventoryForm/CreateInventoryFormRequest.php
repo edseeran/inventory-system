@@ -22,18 +22,19 @@ class CreateInventoryFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department'        => ['string','required'],
-            'facilityType'      => ['required', 'string', 'in:LABORATORY,CLASSROOM,OFFICE,OTHERS'],
-            'otherFacilityType' => ['required_if:facilityType,OTHERS'],
-            'asOfDate'          => ['required', 'date'],
-            'item'              => ['required', 'string'],
-            'brand'             => ['required', 'string'],
-            'quantity'          => ['required', 'integer'],
-            'itemSerialNumber'  => ['required', 'string'],
-            'datePurchased'     => ['required', 'date'],
-            'amount'            => ['required', 'integer'],
-            'dateIssued'        => ['required', 'date'],
-            'itemStatus'        => ['required', 'string', 'in:WORKING,NOT WORKING,FOR REPAIR,FOR CALIBRATION'],
+            'inventoryForm'                      => ['array'],
+            'inventoryForm.*.department'        => ['string','required'],
+            'inventoryForm.*.facilityType'      => ['required', 'string', 'in:LABORATORY,CLASSROOM,OFFICE,OTHERS'],
+            'inventoryForm.*.otherFacilityType' => ['required_if:facilityType,OTHERS'],
+            'inventoryForm.*.asOfDate'          => ['required', 'date'],
+            'inventoryForm.*.item'              => ['required', 'string'],
+            'inventoryForm.*.brand'             => ['required', 'string'],
+            'inventoryForm.*.quantity'          => ['required', 'integer'],
+            'inventoryForm.*.itemSerialNumber'  => ['required', 'string'],
+            'inventoryForm.*.datePurchased'     => ['required', 'date'],
+            'inventoryForm.*.amount'            => ['required', 'integer'],
+            'inventoryForm.*.dateIssued'        => ['required', 'date'],
+            'inventoryForm.*.itemStatus'        => ['required', 'string', 'in:WORKING,NOT WORKING,FOR REPAIR,FOR CALIBRATION'],
         ];
     }
 }
