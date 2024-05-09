@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        // Temporary fix for CSRF token mismatch
+        'api/*'
     ];
 }
