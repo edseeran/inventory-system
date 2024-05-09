@@ -6,16 +6,18 @@ use App\Repositories\BaseRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\InventoryForm;
+use App\Models\InventoryForm,
+    App\Models\Department;
 
 
 class IndexInventoryFormRepository extends BaseRepository
 {
-    public function execute(){
+    public function execute ($inventoryFormReferenceNumber){
 
         if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN'){
 
-            $inventoryForm = InventoryForm::all();
+            $inventoryForm = InventoryForm::where('inventory_form_reference_number', $inventoryFormReferenceNumber)->get();
+            // $inventoryForm = InventoryForm::where("department_id", "=", $this->getDepartmentId($departmentCode))->get();
 
         } else {
 

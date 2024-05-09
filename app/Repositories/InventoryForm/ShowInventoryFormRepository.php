@@ -10,11 +10,11 @@ use App\Models\InventoryForm;
 
 class ShowInventoryFormRepository extends BaseRepository
 {
-    public function execute($inventoryFormReferenceNumber){
+    public function execute($itemReferenceNumber){
 
-        if (Auth::user()->role == 'ADMIN')
+        if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN')
         {
-            $InventoryFormReferenceNumber = InventoryForm::where('inventoryForm_reference_number', $inventoryFormReferenceNumber)->get();
+            $itemReferenceNumber = InventoryForm::where('item_reference_number', $itemReferenceNumber)->get();
 
         }else{
 
@@ -22,7 +22,7 @@ class ShowInventoryFormRepository extends BaseRepository
 
         }
 
-        return $this->success('Show InventoryForm Data', $this->getShowData($inventoryFormReferenceNumber));
+        return $this->success('Show Inventory Item Data', $this->getShowData($itemReferenceNumber));
 
     }
 

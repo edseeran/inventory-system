@@ -22,6 +22,17 @@ trait Generator
 
     }
 
+    protected function itemReferenceNumber(){
+        do {
+
+            $itemReferenceNumber = random_int(100000, 999999);
+
+        } while (InventoryForm::where("item_reference_number", "=", $itemReferenceNumber)->first());
+
+        return $itemReferenceNumber;
+
+    }
+
     protected function departmentReferenceNumber(){
         do {
 

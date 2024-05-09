@@ -17,22 +17,22 @@ class CreateInventoryFormRepository extends BaseRepository
 
         $user = User::where('id','=', Auth::user()->id)->first();
         $arrayForm = [];
-        //$department = Department::where('department_code', $request->departmentCode)->first();
+        // $department = Department::where('department_code', $request->departmentCode)->first();
 
         // *** Create only if the user is an HR/ADMIN
         if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN' || Auth::user()->role == 'CUSTODIAN'){
+            $inventoryFormReferenceNumber = $this->inventoryFormReferenceNumber();
             foreach($request->inventoryForm as $form){
                if (!empty($form['facilityType']) && !empty($form['asOfDate'])) {
 
-                // return $form->otherFacilityType ?? 1;
-
-                $inventoryForm = InventoryForm::create([
-                    "inventory_form_reference_number"     => $this->inventoryFormReferenceNumber(),
+                InventoryForm::create([
+                    'inventory_form_reference_number'     => $inventoryFormReferenceNumber,
+                    "item_reference_number"               => $this->itemReferenceNumber(),
                     "user_id"                             => $user->id,
                     "facility_type"                       => strtoupper($form['facilityType']),
                     "other_facility_type"                 => $form['otherFacilityType'] ?? null,
                     "department_id"                       => $this->getDepartmentId($form['department']),
-                    "as_of_date"                          => strtoupper($form['asOfDate']),
+                    "as_of_date"                          => $form['asOfDate'],
                     "item"                                => strtoupper($form['item']),
                     "brand"                               => strtoupper($form['brand']),
                     "quantity"                            => $form['quantity'],
@@ -41,16 +41,16 @@ class CreateInventoryFormRepository extends BaseRepository
                     "amount"                              => $form['amount'],
                     "date_issued"                         => $form['dateIssued'],
                     "item_status"                         => strtoupper($form['itemStatus']),
-
                 ]);
 
-                $arrayForm[] = $inventoryForm;
               }
 
               else{
                 // return 1;
               }
            }
+
+           $inventoryForms = InventoryForm::where('inventory_form_reference_number', $inventoryFormReferenceNumber)->get();
 
     }
 
@@ -59,7 +59,7 @@ class CreateInventoryFormRepository extends BaseRepository
             return response(['message: You do not have permission to view this page'], 401);
 
         }
-        
-        return $this->success('InventoryForm Successfully Created.', $this->getIndexData($arrayForm));
+
+        return $this->success('InventoryForm Successfully Created.', $this->getIndexData($inventoryForms));
     }
 }

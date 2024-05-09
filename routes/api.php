@@ -52,9 +52,9 @@ Route::group([
     ], function ($route) {
 
         $route->post('/create',                                         [InventoryFormController::class,'create']);
-        $route->get('/index',                                           [InventoryFormController::class,'index']);
+        $route->get('/index/{inventoryFormReferenceNumber}',            [InventoryFormController::class,'index']);
         $route->delete('/delete/{id}',                                  [InventoryFormController::class,'delete']);
-        $route->get('/show/{id}',                                       [InventoryFormController::class,'show']);
+        $route->get('/show/{itemReferenceNumber}',                      [InventoryFormController::class,'show']);
         $route->put('/update/{id}',                                     [InventoryFormController::class,'update']);
 
     });

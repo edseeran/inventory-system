@@ -15,8 +15,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "37d67a41-8d91-42e0-84c3-1f844d6aac85"
+						"type": "text"
 					}
 				],
 				"body": {
@@ -75,8 +74,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "141b499f-714d-4b1a-920d-7dbc6b2294cf"
+						"type": "text"
 					}
 				],
 				"body": {
@@ -152,8 +150,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "dc329fb2-ae56-4e6a-893f-cd45d6c4c493"
+						"type": "text"
 					}
 				],
 				"body": {
@@ -228,8 +225,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "14eea310-1f3f-47ae-bda8-b8b7eab3bbe1"
+						"type": "text"
 					}
 				],
 				"body": {

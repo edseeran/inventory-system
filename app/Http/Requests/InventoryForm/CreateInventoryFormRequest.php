@@ -22,11 +22,10 @@ class CreateInventoryFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'inventoryForm'                      => ['array'],
+            'inventoryForm'                     => ['array'],
             'inventoryForm.*.department'        => ['string','required'],
             'inventoryForm.*.facilityType'      => ['required', 'string', 'in:LABORATORY,CLASSROOM,OFFICE,OTHERS'],
             'inventoryForm.*.otherFacilityType' => ['required_if:facilityType,OTHERS'],
-            'inventoryForm.*.asOfDate'          => ['required', 'date'],
             'inventoryForm.*.item'              => ['required', 'string'],
             'inventoryForm.*.brand'             => ['required', 'string'],
             'inventoryForm.*.quantity'          => ['required', 'integer'],
@@ -35,6 +34,7 @@ class CreateInventoryFormRequest extends FormRequest
             'inventoryForm.*.amount'            => ['required', 'integer'],
             'inventoryForm.*.dateIssued'        => ['required', 'date'],
             'inventoryForm.*.itemStatus'        => ['required', 'string', 'in:WORKING,NOT WORKING,FOR REPAIR,FOR CALIBRATION'],
+            'inventoryForm.*.asOfDate'          => ['required', 'date'],
         ];
     }
 }

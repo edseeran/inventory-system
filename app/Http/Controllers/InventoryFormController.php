@@ -47,12 +47,12 @@ class InventoryFormController extends Controller
         return $this->create->execute($request);
     }
 
-    protected function show(ShowInventoryFormRequest $request, $inventoryReferenceNumber) {
-        return $this->show->execute($inventoryReferenceNumber);
+    protected function show(ShowInventoryFormRequest $request, $itemReferenceNumber) {
+        return $this->show->execute($itemReferenceNumber);
     }
 
-    protected function index(IndexInventoryFormRequest $request) {
-        return $this->index->execute($request);
+    protected function index(IndexInventoryFormRequest $request, $inventoryFormReferenceNumber) {
+        return $this->index->execute($inventoryFormReferenceNumber);
     }
 
     protected function update(UpdateInventoryFormRequest $request, $inventoryReferenceNumber) {

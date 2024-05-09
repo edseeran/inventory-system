@@ -4,7 +4,7 @@ namespace App\Http\Requests\InventoryForm;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexInventoryFormRequest extends FormRequest
+class ShowInventoryFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

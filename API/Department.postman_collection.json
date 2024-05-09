@@ -82,8 +82,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "d84a65cc-deeb-42d0-b857-72252cd04849"
+						"type": "text"
 					}
 				],
 				"body": {
@@ -137,8 +136,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "9129d4df-10af-4f14-8a92-0c8fcf43c0cd"
+						"type": "text"
 					}
 				],
 				"body": {
@@ -198,8 +196,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"uuid": "b97883f9-dc2d-479d-b14d-58040e5fcb70"
+						"type": "text"
 					}
 				],
 				"url": {

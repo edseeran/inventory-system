@@ -15,6 +15,7 @@ class InventoryForm extends Model
     protected $fillable = [
 
         'inventory_form_reference_number',
+        'item_reference_number',
         'user_id',
         'facility_type',
         'other_facility_type',

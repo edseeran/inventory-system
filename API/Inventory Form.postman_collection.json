@@ -21,15 +21,55 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
 				"url": {
-					"raw": "{{base_url}}/inventory-form/index",
+					"raw": "{{base_url}}/inventory-form/index/741000",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"inventory-form",
-						"index"
+						"index",
+						"741000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/inventory-form/show/751243",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"inventory-form",
+						"show",
+						"751243"
 					]
 				}
 			},
@@ -81,75 +121,17 @@
 				"header": [
 					{
 						"key": "Accept",
-						"value": "application/json",
-						"type": "text",
-						"uuid": "d3a18e03-9efe-48ac-987f-66bb36cf296d"
+						"value": "application/json"
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "department",
-							"value": "ICTDU",
-							"type": "text"
-						},
-						{
-							"key": "facilityType",
-							"value": "OFFICE",
-							"type": "text"
-						},
-						{
-							"key": "otherFacilityType",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "asOfDate",
-							"value": "2024-05-03",
-							"type": "text"
-						},
-						{
-							"key": "item",
-							"value": "MONITOR",
-							"type": "text"
-						},
-						{
-							"key": "brand",
-							"value": "SAMSUNG",
-							"type": "text"
-						},
-						{
-							"key": "quantity",
-							"value": "12",
-							"type": "text"
-						},
-						{
-							"key": "itemSerialNumber",
-							"value": "02158453514",
-							"type": "text"
-						},
-						{
-							"key": "datePurchased",
-							"value": "2024-05-01",
-							"type": "text"
-						},
-						{
-							"key": "amount",
-							"value": "50000",
-							"type": "text"
-						},
-						{
-							"key": "dateIssued",
-							"value": "2024-05-02",
-							"type": "text"
-						},
-						{
-							"key": "itemStatus",
-							"value": "WORKING",
-							"type": "text"
+					"mode": "raw",
+					"raw": "{\r\n    \"inventoryForm\" :  [\r\n        {\r\n            \"facilityType\": \"OFFICE\",\r\n            \"department\": \"ICTDU\",\r\n            \"asOfDate\": \"2024-05-06\",\r\n            \"item\": \"MONITOR\",\r\n            \"brand\": \"HP\",\r\n            \"quantity\": 12,\r\n            \"itemSerialNumber\": 1326465,\r\n            \"datePurchased\": \"2024-01-26\",\r\n            \"amount\": 50000,\r\n            \"dateIssued\": \"2024-05-06\",\r\n            \"itemStatus\": \"FOR REPAIR\"\r\n\r\n        },\r\n        {\r\n            \"facilityType\": \"OFFICE\",\r\n            \"department\": \"ICTDU\",\r\n            \"asOfDate\": \"2024-05-06\",\r\n            \"item\": \"MOUSE\",\r\n            \"brand\": \"A4TEC\",\r\n            \"quantity\": 12,\r\n            \"itemSerialNumber\": 1326465,\r\n            \"datePurchased\": \"2024-01-26\",\r\n            \"amount\": 50000,\r\n            \"dateIssued\": \"2024-05-06\",\r\n            \"itemStatus\": \"FOR REPAIR\"\r\n\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					]
+					}
 				},
 				"url": {
 					"raw": "{{base_url}}/inventory-form/create",
