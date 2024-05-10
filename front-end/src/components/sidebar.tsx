@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
+import { University, Home } from "lucide-react";
+
 const SideBar = () => {
     return (
         <div className="hidden w-64 shrink-0 border-r bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900 lg:block">
@@ -9,17 +11,17 @@ const SideBar = () => {
                 <nav className="space-y-2">
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="#"
+                        href="/"
                     >
-                        <HomeIcon className="h-5 w-5" />
+                        <Home />
                         Home
                     </Link>
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="#"
+                        href="/department"
                     >
-                        <PackageIcon className="h-5 w-5" />
-                        Products
+                        <University />
+                        Department
                     </Link>
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
@@ -45,7 +47,7 @@ const SideBar = () => {
     );
 };
 
-function ChevronLeftIcon(props) {
+function ChevronLeftIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -64,7 +66,7 @@ function ChevronLeftIcon(props) {
     );
 }
 
-function UsersIcon(props) {
+function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -86,7 +88,7 @@ function UsersIcon(props) {
     );
 }
 
-function HomeIcon(props) {
+function HomeIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -106,7 +108,7 @@ function HomeIcon(props) {
     );
 }
 
-function MailIcon(props) {
+function MailIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -126,7 +128,7 @@ function MailIcon(props) {
     );
 }
 
-function PackageIcon(props) {
+function PackageIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}

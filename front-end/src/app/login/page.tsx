@@ -20,6 +20,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 
+import { DataTable } from "@/components/ui/data-table";
+
 const formSchema = z.object({
     employeeNumber: z.string().min(2, {
         message: "Username must be at least 2 characters.",

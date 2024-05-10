@@ -1,19 +1,107 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
+import { useRouter } from "next/navigation";
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
 const NavBar = () => {
+    const router = useRouter();
+
+    async function logout() {
+        const res = await fetch("http://127.0.0.1:8000/api/account/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+
+        if (res.ok) {
+            localStorage.removeItem("token");
+            router.push("/login");
+        }
+        return res;
+    }
+
     return (
         <header className="flex h-16 w-full items-center justify-between bg-white px-4 shadow-sm dark:bg-gray-950">
             <div className="flex items-center gap-4">
-                <Link className="flex items-center gap-2" href="#">
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button
+                            className="lg:hidden"
+                            size="icon"
+                            variant="ghost"
+                        >
+                            <MenuIcon className="h-6 w-6" />
+                            <span className="sr-only">Toggle navigation</span>
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left">
+                        <div className="flex flex-col gap-4 p-4">
+                            <Link className="flex items-center gap-2" href="#">
+                                <MountainIcon className="h-6 w-6" />
+                                <span className="text-lg font-semibold">
+                                    SPCF Inventory System
+                                </span>
+                            </Link>
+                            <nav className="space-y-2">
+                                <Link
+                                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                    href="/"
+                                >
+                                    {/* <HomeIcon className="h-5 w-5" /> */}
+                                    Home
+                                </Link>
+                                <Link
+                                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                    href="/department"
+                                >
+                                    {/* <PackageIcon className="h-5 w-5" /> */}
+                                    Department
+                                </Link>
+                                <Link
+                                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                    href="#"
+                                >
+                                    {/* <UsersIcon className="h-5 w-5" /> */}
+                                    About
+                                </Link>
+                                <Link
+                                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                    href="#"
+                                >
+                                    {/* <MailIcon className="h-5 w-5" /> */}
+                                    Contact
+                                </Link>
+                            </nav>
+                        </div>
+                    </SheetContent>
+                </Sheet>
+                <Link
+                    className="flex items-center gap-2 hidden lg:flex"
+                    href="#"
+                >
                     <MountainIcon className="h-6 w-6" />
                     <span className="text-lg font-semibold">
-                        SPCF Inventory Management System
+                        SPCF Inventory System
                     </span>
                 </Link>
-                <nav className="hidden lg:flex items-center gap-4">
+                {/* <nav className="hidden lg:flex items-center gap-4">
                     <Link
                         className="text-sm font-medium hover:text-gray-900 dark:hover:text-gray-50"
                         href="#"
@@ -38,25 +126,42 @@ const NavBar = () => {
                     >
                         Contact
                     </Link>
-                </nav>
+                </nav> */}
             </div>
-            <div className="relative w-full max-w-md lg:max-w-lg">
-                <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 dark:text-gray-400" />
-                <Input
-                    className="w-full rounded-md bg-gray-100 pl-10 pr-4 py-2 text-sm focus:bg-white focus:outline-none dark:bg-gray-800 dark:text-gray-50 dark:focus:bg-gray-700"
-                    placeholder="Search products..."
-                    type="search"
-                />
+            <div className="flex items-center gap-4 mr-10">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            className="rounded-full"
+                            size="icon"
+                            variant="ghost"
+                        >
+                            <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+                            <span className="sr-only">Toggle user menu</span>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuItem>My Account</DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                            onClick={() => {
+                                logout();
+                            }}
+                        >
+                            Logout
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
-            <Button className="lg:hidden" size="icon" variant="outline">
-                <MenuIcon className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation</span>
-            </Button>
         </header>
     );
 };
 
-function MountainIcon(props) {
+function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -75,7 +180,7 @@ function MountainIcon(props) {
     );
 }
 
-function SearchIcon(props) {
+function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -95,7 +200,7 @@ function SearchIcon(props) {
     );
 }
 
-function MenuIcon(props) {
+function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
