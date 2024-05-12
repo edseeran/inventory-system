@@ -20,7 +20,7 @@ use App\Repositories\Department\CreateDepartmentRepository,
 
 class DepartmentController extends Controller
 {
-   protected $create, $index, $delete, $show, $update;
+    protected $create, $index, $delete, $show, $update;
 
     // * CONSTRUCTOR INJECTION
     public function __construct(
@@ -31,7 +31,7 @@ class DepartmentController extends Controller
         ShowDepartmentRepository                $show,
         UpdateDepartmentRepository              $update,
 
-    ){
+    ) {
         $this->create   = $create;
         $this->index    = $index;
         $this->delete   = $delete;
@@ -40,25 +40,28 @@ class DepartmentController extends Controller
     }
 
 
-    protected function create(CreateDepartmentRequest $request) {
+    protected function create(CreateDepartmentRequest $request)
+    {
         return $this->create->execute($request);
     }
 
-    protected function show(ShowDepartmentRequest $request, $departmentReferenceNumber) {
+    protected function show($departmentReferenceNumber)
+    {
         return $this->show->execute($departmentReferenceNumber);
     }
 
-    protected function index(IndexDepartmentRequest $request) {
+    protected function index(IndexDepartmentRequest $request)
+    {
         return $this->index->execute($request);
     }
 
-    protected function update(UpdateDepartmentRequest $request, $departmentReferenceNumber) {
+    protected function update(UpdateDepartmentRequest $request, $departmentReferenceNumber)
+    {
         return $this->update->execute($request, $departmentReferenceNumber);
     }
 
-    protected function delete(DeleteDepartmentRequest $request, $departmentReferenceNumber) {
+    protected function delete(DeleteDepartmentRequest $request, $departmentReferenceNumber)
+    {
         return $this->delete->execute($departmentReferenceNumber);
-
     }
-
 }

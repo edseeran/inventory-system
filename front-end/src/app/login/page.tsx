@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 
 import { DataTable } from "@/components/ui/data-table";
+import { headers } from "next/headers";
 
 const formSchema = z.object({
     employeeNumber: z.string().min(2, {
@@ -42,26 +43,47 @@ const Login = () => {
     });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        try {
-            const response = await axios.post(
-                "http://127.0.0.1:8000/api/account/login",
-                {
-                    employeeNumber: values.employeeNumber,
-                    password: values.password,
-                }
-            );
+        // try {
+        //     const response = await axios.post(
+        //         "http://127.0.0.1:8000/api/account/login",
+        //         {
+        //             employeeNumber: values.employeeNumber,
+        //             password: values.password,
+        //             // headers: {
+        //             //     "Content-Type": "application/json",
+        //             // },
+        //         }
+        //     );
 
-            if (response.data.token) {
-                // Store the access token in local storage (or some other secure place)
-                localStorage.setItem("token", response.data.token);
-                // Navigate to the home page, or wherever you want to redirect the user to after they log in
-                router.push("/");
-            } else {
-                // Handle error: show a message to the user, log the error, etc.
+        //     if (response.data.token) {
+        //         // Store the access token in local storage (or some other secure place)
+        //         localStorage.setItem("token", response.data.token);
+        //         // Navigate to the home page, or wherever you want to redirect the user to after they log in
+        //         router.push("/");
+        //     } else {
+        //         // Handle error: show a message to the user, log the error, etc.
+        //     }
+        // } catch (error) {
+        //     // Handle error: show a message to the user, log the error, etc.
+        // }
+            try {
+                const res = await fetch("http://127.0.0.1:8000/api/account/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    console.log(data);
+                    localStorage.setItem("token", data.token);
+                    router.push("/");
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            // Handle error: show a message to the user, log the error, etc.
-        }
     }
 
     return (

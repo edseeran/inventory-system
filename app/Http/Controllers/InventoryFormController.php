@@ -17,13 +17,12 @@ use App\Repositories\InventoryForm\CreateInventoryFormRepository,
     App\Repositories\InventoryForm\IndexInventoryFormRepository,
     App\Repositories\InventoryForm\UpdateInventoryFormRepository,
     App\Repositories\InventoryForm\DeleteInventoryFormRepository;
-
-
+use App\Repositories\InventoryForm\Enums\ReferenceNumberRepository;
 use Illuminate\Http\Request;
 
 class InventoryFormController extends Controller
 {
-    protected $create, $index, $delete, $show, $update;
+    protected $create, $index, $delete, $show, $update, $referenceNumber;
 
     // * CONSTRUCTOR INJECTION
     public function __construct(
@@ -33,34 +32,45 @@ class InventoryFormController extends Controller
         DeleteInventoryFormRepository              $delete,
         ShowInventoryFormRepository                $show,
         UpdateInventoryFormRepository              $update,
+        ReferenceNumberRepository                  $referenceNumber
 
-    ){
+    ) {
         $this->create   = $create;
         $this->index    = $index;
         $this->delete   = $delete;
         $this->show     = $show;
         $this->update   = $update;
+        $this->referenceNumber = $referenceNumber;
     }
 
 
-    protected function create(CreateInventoryFormRequest $request) {
+    protected function create(CreateInventoryFormRequest $request)
+    {
         return $this->create->execute($request);
     }
 
-    protected function show(ShowInventoryFormRequest $request, $itemReferenceNumber) {
+    protected function show(ShowInventoryFormRequest $request, $itemReferenceNumber)
+    {
         return $this->show->execute($itemReferenceNumber);
     }
 
-    protected function index(IndexInventoryFormRequest $request, $inventoryFormReferenceNumber) {
+    protected function index(IndexInventoryFormRequest $request, $inventoryFormReferenceNumber)
+    {
         return $this->index->execute($inventoryFormReferenceNumber);
     }
 
-    protected function update(UpdateInventoryFormRequest $request, $inventoryReferenceNumber) {
+    protected function update(UpdateInventoryFormRequest $request, $inventoryReferenceNumber)
+    {
         return $this->update->execute($request, $inventoryReferenceNumber);
     }
 
-    protected function delete(DeleteInventoryFormRequest $request, $inventoryReferenceNumber) {
+    protected function delete(DeleteInventoryFormRequest $request, $inventoryReferenceNumber)
+    {
         return $this->delete->execute($inventoryReferenceNumber);
     }
 
+    public function InventoryFormReferenceNumberEnums()
+    {
+        return $this->referenceNumber->execute();
+    }
 }

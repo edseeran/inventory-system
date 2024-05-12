@@ -13,6 +13,17 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
 export type Department = {
     id: number;
     departmentReferenceNumber: string;
@@ -23,6 +34,26 @@ export type Department = {
 };
 
 import Link from "next/link";
+
+const deleteDepartment = async (departmentReferenceNumber: string) => {
+    try {
+        const res = await fetch(
+            `http://127.0.0.1:8000/api/department/delete/${departmentReferenceNumber}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+        if (!res.ok) {
+            throw new Error("Failed to delete department");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const columns: ColumnDef<Department>[] = [
     {
@@ -54,7 +85,7 @@ export const columns: ColumnDef<Department>[] = [
     },
     {
         header: "Department Name",
-        accessorKey: "  ",
+        accessorKey: "departmentName",
     },
     {
         header: "Department Type",
@@ -65,31 +96,61 @@ export const columns: ColumnDef<Department>[] = [
         cell: ({ row }) => {
             const department = row.original;
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                        // onClick={() =>
-                        //     navigator.clipboard.writeText(department.id)
-                        // }
-                        // onClick={() => console.log(department.id)}
-                        >
-                            <Link href={`department/${department.id}`}>
-                                Show
-                            </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>Update</DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                <Dialog>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuItem
+                            // onClick={() =>
+                            //     navigator.clipboard.writeText(department.id)
+                            // }
+                            // onClick={() => console.log(department.id)}
+                            >
+                                <Link
+                                    href={`department/${department.departmentReferenceNumber}`}
+                                >
+                                    Show
+                                </Link>
+                            </DropdownMenuItem>
+                            <DialogTrigger asChild>
+                                <DropdownMenuItem>Update</DropdownMenuItem>
+                            </DialogTrigger>
 
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                            <DropdownMenuSeparator />
+
+                            <DropdownMenuItem
+                                onClick={() =>
+                                    deleteDepartment(
+                                        department.departmentReferenceNumber
+                                    )
+                                }
+                            >
+                                Delete
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    {/* Dialog content must be outside */}
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Update Department</DialogTitle>
+                            <DialogClose />
+                        </DialogHeader>
+                        <DialogDescription>
+                            Update the department details.
+                        </DialogDescription>
+                        <DialogFooter>
+                            <Button variant="ghost">Cancel</Button>
+                            <Button>Update</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             );
         },
     },

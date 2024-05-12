@@ -27,20 +27,18 @@ Route::group([
 
 ], function ($route) {
 
-    $route->post('/register',                   [UserController::class,'register']);
-    $route->post('/login',                      [UserController::class,'login']);
+    $route->post('/register',                   [UserController::class, 'register']);
+    $route->post('/login',                      [UserController::class, 'login']);
 
-Route::group([
+    Route::group([
 
-    'middleware' => 'auth:sanctum',
+        'middleware' => 'auth:sanctum',
 
     ], function ($route) {
 
-        $route->get('/index',                    [UserController::class,'index']);
-        $route->post('/logout',                  [UserController::class,'logout']);
-
+        $route->get('/index',                    [UserController::class, 'index']);
+        $route->post('/logout',                  [UserController::class, 'logout']);
     });
-
 });
 
 //inventory form endpoints
@@ -49,15 +47,18 @@ Route::group([
     'middleware' => 'auth:sanctum',
     'id'         => 'inventoryFormReferenceNumber'
 
-    ], function ($route) {
+], function ($route) {
 
-        $route->post('/create',                                         [InventoryFormController::class,'create']);
-        $route->get('/index/{inventoryFormReferenceNumber}',            [InventoryFormController::class,'index']);
-        $route->delete('/delete/{id}',                                  [InventoryFormController::class,'delete']);
-        $route->get('/show/{itemReferenceNumber}',                      [InventoryFormController::class,'show']);
-        $route->put('/update/{id}',                                     [InventoryFormController::class,'update']);
-
-    });
+    $route->post('/create',                                         [InventoryFormController::class, 'create']);
+    $route->get('/index/{inventoryFormReferenceNumber}',            [InventoryFormController::class, 'index']);
+    $route->delete('/delete/{id}',                                  [InventoryFormController::class, 'delete']);
+    $route->get('/show/{itemReferenceNumber}',                      [InventoryFormController::class, 'show']);
+    $route->put('/update/{id}',                                     [InventoryFormController::class, 'update']);
+    $route->get(
+        '/enums/reference-numbers',
+        [InventoryFormController::class, 'InventoryFormReferenceNumberEnums']
+    );
+});
 
 //department endpoints
 Route::group([
@@ -65,11 +66,11 @@ Route::group([
     'middleware' => 'auth:sanctum',
     'id'         => 'departmentReferenceNumber'
 
-    ], function ($route) {
+], function ($route) {
 
-        $route->post('/create',                                         [DepartmentController::class,'create']);
-        $route->get('/index',                                           [DepartmentController::class,'index']);
-        $route->delete('/delete/{id}',                                  [DepartmentController::class,'delete']);
-        $route->get('/show/{id}',                                       [DepartmentController::class,'show']);
-        $route->put('/update/{id}',                                     [DepartmentController::class,'update']);
-    });
+    $route->post('/create',                                         [DepartmentController::class, 'create']);
+    $route->get('/index',                                           [DepartmentController::class, 'index']);
+    $route->delete('/delete/{id}',                                  [DepartmentController::class, 'delete']);
+    $route->get('/show/{id}',                                       [DepartmentController::class, 'show']);
+    $route->put('/update/{id}',                                     [DepartmentController::class, 'update']);
+});

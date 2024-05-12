@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-import { University, Home } from "lucide-react";
+import { University, Home, Package } from "lucide-react";
 
 const SideBar = () => {
     return (
@@ -25,10 +25,10 @@ const SideBar = () => {
                     </Link>
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="#"
+                        href="/inventory"
                     >
-                        <UsersIcon className="h-5 w-5" />
-                        About
+                        <Package />
+                        Inventory
                     </Link>
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"

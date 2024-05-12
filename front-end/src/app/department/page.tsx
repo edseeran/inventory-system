@@ -25,6 +25,7 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
+    DialogClose,
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -36,6 +37,8 @@ import { useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import { Department, columns } from "@/app/department/columns";
 import { Button } from "@/components/ui/button";
+import { ComboBox } from "@/components/ui/combo-box";
+import Test from "@/components/test";
 
 async function getData() {
     const res = await fetch("http://127.0.0.1:8000/api/department/index", {
@@ -71,6 +74,17 @@ async function getData() {
 //     return res.json();
 // }
 
+const choices = [
+    {
+        value: "ACADEMIC",
+        label: "Academic",
+    },
+    {
+        value: "NON-ACADEMIC",
+        label: "Non-Academic",
+    },
+];
+
 const formSchema = z
     .object({
         departmentCode: z.string().min(2, {
@@ -79,20 +93,23 @@ const formSchema = z
         departmentName: z.string().min(4, {
             message: "Department name must be at least 4 characters.",
         }),
-        departmentType: z.enum(["ACADEMIC", "NON-ACADEMIC"]),
+        departmentType: z.string().min(1, {
+            message: "Please select a department type.",
+        }),
     })
     .required();
 
 function DepartmentPage() {
     const router = useRouter();
     const [departments, setDepartments] = useState([]);
+    const [selectedValue, setSelectedValue] = useState("");
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             departmentCode: "",
             departmentName: "",
-            departmentType: "ACADEMIC",
+            departmentType: "",
         },
     });
 
@@ -137,6 +154,8 @@ function DepartmentPage() {
         <div className="container mx-auto">
             <div className="flex flex-row justify-between">
                 <h1 className="text-2xl font-bold text-left">Departments</h1>
+
+                {/* Create Department Button */}
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button variant="outline">Create Department</Button>
@@ -150,29 +169,6 @@ function DepartmentPage() {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {/* <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Name
-                                </Label>
-                                <Input
-                                    id="name"
-                                    value=""
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label
-                                    htmlFor="username"
-                                    className="text-right"
-                                >
-                                    Username
-                                </Label>
-                                <Input
-                                    id="username"
-                                    value="@peduarte"
-                                    className="col-span-3"
-                                />
-                            </div> */}
                             <Form {...form}>
                                 <form
                                     onSubmit={form.handleSubmit(
@@ -228,11 +224,30 @@ function DepartmentPage() {
                                                     Department Type
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <Input
+                                                    {/* <Input
                                                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                         placeholder="Username"
                                                         {...field}
+                                                        value='test'
+                                                    /> */}
+                                                    {/* <ComboBox
+                                                        choices={choices}
+                                                        {...field}
+                                                    /> */}
+                                                    <ComboBox
+                                                        choices={choices}
+                                                        value={form.getValues(
+                                                            "departmentType"
+                                                        )}
+                                                        onChange={(value) =>
+                                                            form.setValue(
+                                                                "departmentType",
+                                                                value
+                                                            )
+                                                        }
                                                     />
+
+                                                    {/* <Test {...field} /> */}
                                                 </FormControl>
                                                 <FormDescription className="text-gray-600 text-xs italic"></FormDescription>
                                                 <FormMessage />

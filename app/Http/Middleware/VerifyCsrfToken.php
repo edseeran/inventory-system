@@ -13,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         // Temporary fix for CSRF token mismatch
-        'api/*'
+        // 'api/*' 
     ];
 }

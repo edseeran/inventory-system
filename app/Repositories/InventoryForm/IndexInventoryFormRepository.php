@@ -12,11 +12,18 @@ use App\Models\InventoryForm,
 
 class IndexInventoryFormRepository extends BaseRepository
 {
-    public function execute ($inventoryFormReferenceNumber){
+    public function execute($inventoryFormReferenceNumber)
+    {
 
-        if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN'){
+        if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN') {
 
-            $inventoryForm = InventoryForm::where('inventory_form_reference_number', $inventoryFormReferenceNumber)->get();
+            if ($inventoryFormReferenceNumber == 'all') {
+                $inventoryForm = InventoryForm::all();
+            } else {
+                $inventoryForm = InventoryForm::where('inventory_form_reference_number', $inventoryFormReferenceNumber)->get();
+            }
+            // $inventoryForm = InventoryForm::where('inventory_form_reference_number', $inventoryFormReferenceNumber)->get();
+            // $inventoryForm = InventoryForm::all();
             // $inventoryForm = InventoryForm::where("department_id", "=", $this->getDepartmentId($departmentCode))->get();
 
         } else {
@@ -25,7 +32,5 @@ class IndexInventoryFormRepository extends BaseRepository
         }
 
         return $this->success('List of Inventory Form Data', $this->getIndexData($inventoryForm));
-
     }
-
 }
