@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import axios from "axios";
 import { useState } from "react";
+import { cookies } from "next/headers";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +33,9 @@ const formSchema = z.object({
     }),
 });
 
+import { OnSubmit } from "./onSubmit";
+import { NextResponse } from "next/server";
+
 const Login = () => {
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
@@ -41,6 +45,10 @@ const Login = () => {
             password: "",
         },
     });
+
+    // const onSubmit = form.handleSubmit(async (values) => {
+    //     OnSubmit(values);
+    // });
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // try {
@@ -66,24 +74,37 @@ const Login = () => {
         // } catch (error) {
         //     // Handle error: show a message to the user, log the error, etc.
         // }
-            try {
-                const res = await fetch("http://127.0.0.1:8000/api/account/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(values),
-                });
+        try {
+            const res = await fetch("http://127.0.0.1:8000/api/account/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            });
 
-                if (res.ok) {
-                    const data = await res.json();
-                    console.log(data);
-                    localStorage.setItem("token", data.token);
-                    router.push("/");
-                }
-            } catch (error) {
-                console.log(error);
+            if (res.ok) {
+                const data = await res.json();
+                console.log(data);
+                localStorage.setItem("token", data.token);
+                // cookies
+                // const cookieStore = cookies().set("token", data.token, {
+                //     // path: "/",
+                //     // maxAge: 60 * 60 * 24 * 7,
+                // });
+                // console.log(cookieStore);
+
+                let response = NextResponse.next();
+                response.cookies.set("token", data.token);
+                console.log(response.cookies);
+
+                console.log(response.cookies.get("token"));
+
+                router.push("/");
             }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

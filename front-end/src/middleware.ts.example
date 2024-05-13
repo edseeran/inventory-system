@@ -1,0 +1,35 @@
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { headers } from "next/headers";
+import { cookies } from "next/headers";
+
+export function middleware(request: NextRequest) {
+    // const token = request.cookies.get("token");
+    // const token = localStorage.getItem("token");
+    // const token = cookies().get("token")?.value;
+
+    const response = NextResponse.next();
+    const token = response.cookies.get("token")?.value;
+    // const token = request.cookies.get("token");
+    console.log(response.cookies.get("token")?.value);
+
+    if (!token && request.nextUrl.pathname !== "/login") {
+        // return NextResponse.redirect("/login");
+        // return NextResponse.redirect(new URL("/login", request.url));
+        // console.log(headers);
+        return NextResponse.redirect(new URL("/login", request.nextUrl.origin));
+    }
+
+    return NextResponse.next();
+
+    // if (token && request.nextUrl.pathname === "/login") {
+    //     return NextResponse.redirect(new URL("/department", request.url));
+    // }
+}
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+    matcher: "/((?!.*\\.).*)",
+};

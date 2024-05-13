@@ -4,6 +4,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { useEffect, useState } from "react";
 import { columns, Inventory } from "./columns";
 import { set } from "react-hook-form";
+import ProtectedRoute from "@/components/protectedroute";
 
 const getInventoryData = async ($inventoryFormReferenceNumber: string) => {
     const inventoryFormReferenceNumber = $inventoryFormReferenceNumber;
@@ -51,4 +52,4 @@ const InventoryPage = () => {
     );
 };
 
-export default InventoryPage;
+export default ProtectedRoute(InventoryPage);

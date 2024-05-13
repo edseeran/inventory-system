@@ -27,6 +27,6 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "src/app/login/api/route.ts"
-    ],
+, "src/middleware.ts.example"    ],
     "exclude": ["node_modules"]
 }

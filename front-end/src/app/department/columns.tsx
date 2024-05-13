@@ -50,6 +50,7 @@ const deleteDepartment = async (departmentReferenceNumber: string) => {
         if (!res.ok) {
             throw new Error("Failed to delete department");
         }
+        window.location.reload();
     } catch (error) {
         console.error(error);
     }
