@@ -12,6 +12,8 @@ import {
     TableHead,
 } from "@/components/ui/table";
 
+import { Plus, Minus } from "lucide-react";
+
 interface Row {
     ref: string;
     item: string;
@@ -93,13 +95,13 @@ const DynamicTable = () => {
                                     onClick={handleAddRow}
                                     variant="outline"
                                 >
-                                    +
+                                    <Plus />
                                 </Button>
                                 <Button
                                     onClick={() => handleSubtractRow(index)}
                                     variant="outline"
                                 >
-                                    -
+                                    <Minus />
                                 </Button>
                             </TableCell>
                         </TableRow>

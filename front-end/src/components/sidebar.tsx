@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-import { University, Home, Package } from "lucide-react";
+import { University, Home, Package, FlaskConical } from "lucide-react";
 
 const SideBar = () => {
     return (
@@ -32,10 +32,10 @@ const SideBar = () => {
                     </Link>
                     <Link
                         className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="#"
+                        href="/test"
                     >
-                        <MailIcon className="h-5 w-5" />
-                        Contact
+                        <FlaskConical />
+                        Test
                     </Link>
                 </nav>
                 <Button className="self-end" size="icon" variant="outline">
