@@ -55,10 +55,10 @@ export type Inventory = {
 
 import Link from "next/link";
 
-const deleteDepartment = async (departmentReferenceNumber: string) => {
+const deleteInventoryForm = async (inventoryFormReferenceNumber: string) => {
     try {
         const res = await fetch(
-            `http://127.0.0.1:8000/api/department/delete/${departmentReferenceNumber}`,
+            `http://127.0.0.1:8000/api/inventory-form/delete/${inventoryFormReferenceNumber}`,
             {
                 method: "DELETE",
                 headers: {
@@ -68,8 +68,10 @@ const deleteDepartment = async (departmentReferenceNumber: string) => {
             }
         );
         if (!res.ok) {
-            throw new Error("Failed to delete department");
+            throw new Error("Failed to delete Inventory Form");
         }
+        window.location.reload();
+
     } catch (error) {
         console.error(error);
     }

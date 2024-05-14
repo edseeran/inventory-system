@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InventoryForm\CreateInventoryFormRequest,
     App\Http\Requests\InventoryForm\ShowInventoryFormRequest,
     App\Http\Requests\InventoryForm\IndexInventoryFormRequest,
+    App\Http\Requests\InventoryForm\ListInventoryFormRequest,
     App\Http\Requests\InventoryForm\UpdateInventoryFormRequest,
     App\Http\Requests\InventoryForm\DeleteInventoryFormRequest;
 
@@ -15,6 +16,7 @@ use App\Http\Requests\InventoryForm\CreateInventoryFormRequest,
 use App\Repositories\InventoryForm\CreateInventoryFormRepository,
     App\Repositories\InventoryForm\ShowInventoryFormRepository,
     App\Repositories\InventoryForm\IndexInventoryFormRepository,
+    App\Repositories\InventoryForm\ListInventoryFormRepository,
     App\Repositories\InventoryForm\UpdateInventoryFormRepository,
     App\Repositories\InventoryForm\DeleteInventoryFormRepository;
 use App\Repositories\InventoryForm\Enums\ReferenceNumberRepository;
@@ -22,13 +24,14 @@ use Illuminate\Http\Request;
 
 class InventoryFormController extends Controller
 {
-    protected $create, $index, $delete, $show, $update, $referenceNumber;
+    protected $create, $index, $list, $delete, $show, $update, $referenceNumber;
 
     // * CONSTRUCTOR INJECTION
     public function __construct(
 
         CreateInventoryFormRepository              $create,
         IndexInventoryFormRepository               $index,
+        ListInventoryFormRepository                $list,
         DeleteInventoryFormRepository              $delete,
         ShowInventoryFormRepository                $show,
         UpdateInventoryFormRepository              $update,
@@ -37,6 +40,7 @@ class InventoryFormController extends Controller
     ) {
         $this->create   = $create;
         $this->index    = $index;
+        $this->list     = $list;
         $this->delete   = $delete;
         $this->show     = $show;
         $this->update   = $update;
@@ -67,6 +71,11 @@ class InventoryFormController extends Controller
     protected function delete(DeleteInventoryFormRequest $request, $inventoryReferenceNumber)
     {
         return $this->delete->execute($inventoryReferenceNumber);
+    }
+
+    protected function list(ListInventoryFormRequest $request)
+    {
+        return $this->list->execute($request);
     }
 
     public function InventoryFormReferenceNumberEnums()

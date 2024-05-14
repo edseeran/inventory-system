@@ -126,6 +126,7 @@ function DepartmentPage() {
         if (!res.ok) {
             throw new Error("Failed to create department");
         }
+        window.location.reload();
 
         const json = await res.json();
 

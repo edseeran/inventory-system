@@ -58,6 +58,7 @@ Route::group([
         '/enums/reference-numbers',
         [InventoryFormController::class, 'InventoryFormReferenceNumberEnums']
     );
+    $route->get('/list',                                            [InventoryFormController::class, 'list']);
 });
 
 //department endpoints

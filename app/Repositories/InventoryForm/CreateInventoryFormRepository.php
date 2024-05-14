@@ -21,18 +21,19 @@ class CreateInventoryFormRepository extends BaseRepository
 
         // *** Create only if the user is an HR/ADMIN
         if(Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN' || Auth::user()->role == 'CUSTODIAN'){
+
             $inventoryFormReferenceNumber = $this->inventoryFormReferenceNumber();
             foreach($request->inventoryForm as $form){
-               if (!empty($form['facilityType']) && !empty($form['asOfDate'])) {
+               if (!empty($request->facilityType) && !empty($request->asOfDate)) {
 
                 InventoryForm::create([
+                    "facility_type"                       => strtoupper($request->facilityType),
+                    "other_facility_type"                 => strtoupper($request->otherFacilityType),
+                    "department_id"                       => $this->getDepartmentId($request->department),
+                    "as_of_date"                          => $request->asOfDate,
                     'inventory_form_reference_number'     => $inventoryFormReferenceNumber,
                     "item_reference_number"               => $this->itemReferenceNumber(),
                     "user_id"                             => $user->id,
-                    "facility_type"                       => strtoupper($form['facilityType']),
-                    "other_facility_type"                 => $form['otherFacilityType'] ?? null,
-                    "department_id"                       => $this->getDepartmentId($form['department']),
-                    "as_of_date"                          => $form['asOfDate'],
                     "item"                                => strtoupper($form['item']),
                     "brand"                               => strtoupper($form['brand']),
                     "quantity"                            => $form['quantity'],
