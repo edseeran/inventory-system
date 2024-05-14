@@ -34,7 +34,7 @@ class CreateInventoryFormRequest extends FormRequest
             'inventoryForm.*.amount'            => ['required', 'integer'],
             'inventoryForm.*.dateIssued'        => ['required', 'date'],
             'inventoryForm.*.itemStatus'        => ['required', 'string', 'in:WORKING,NOT WORKING,FOR REPAIR,FOR CALIBRATION'],
-            'asOfDate'          => ['required', 'date'],
+            'asOfDate'                          => ['required', 'date'],
         ];
     }
 }
