@@ -2,7 +2,19 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-import { University, Home, Package, FlaskConical } from "lucide-react";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+import {
+    University,
+    Home,
+    Package,
+    LayoutDashboard,
+    PackagePlus,
+} from "lucide-react";
 
 const SideBar = () => {
     return (
@@ -23,21 +35,32 @@ const SideBar = () => {
                         <University />
                         Department
                     </Link>
-                    <Link
-                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="/inventory/dashboard"
-                    >
-                        <Package />
-                        Inventory
-                    </Link>
-                    <Link
-                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
-                        href="/test"
-                    >
-                        <FlaskConical />
-                        Test
-                    </Link>
+                    <Collapsible>
+                        <CollapsibleTrigger>
+                            <div className="flex gap-2 rounded-md px-3 w-56 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800">
+                                <Package />
+                                <span>Inventory</span>
+                            </div>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="px-5">
+                            <Link
+                                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                href="/inventory/dashboard"
+                            >
+                                <LayoutDashboard />
+                                Dashboard
+                            </Link>
+                            <Link
+                                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-800"
+                                href="/inventory/create"
+                            >
+                                <PackagePlus />
+                                Create
+                            </Link>
+                        </CollapsibleContent>
+                    </Collapsible>
                 </nav>
+
                 <Button className="self-end" size="icon" variant="outline">
                     <ChevronLeftIcon className="h-5 w-5" />
                     <span className="sr-only">Toggle sidebar</span>
