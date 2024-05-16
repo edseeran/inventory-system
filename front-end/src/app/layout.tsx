@@ -4,6 +4,8 @@ import "./globals.css";
 import SideBar from "@/components/sidebar";
 import NavBar from "@/components/navbar";
 
+import { Toaster } from "@/components/ui/toaster";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +25,7 @@ export default function RootLayout({
                 <div className="flex min-h-screen">
                     <SideBar />
                     <main className="flex-1 p-4 lg:p-6">{children}</main>
+                    <Toaster />
                 </div>
             </body>
         </html>

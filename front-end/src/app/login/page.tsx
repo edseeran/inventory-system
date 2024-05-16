@@ -79,9 +79,10 @@ const Login = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Accept: "application/json",
                 },
                 body: JSON.stringify(values),
-        });
+            });
 
             if (res.ok) {
                 const data = await res.json();

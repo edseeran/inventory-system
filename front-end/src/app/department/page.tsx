@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 import {
     Form,
@@ -101,6 +102,7 @@ const formSchema = z
 
 function DepartmentPage() {
     const router = useRouter();
+    const { toast } = useToast();
     const [departments, setDepartments] = useState([]);
     const [selectedValue, setSelectedValue] = useState("");
 
@@ -119,6 +121,7 @@ function DepartmentPage() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
             },
             body: JSON.stringify(values),
         });
@@ -126,17 +129,27 @@ function DepartmentPage() {
         if (!res.ok) {
             throw new Error("Failed to create department");
         }
-        window.location.reload();
 
-        const json = await res.json();
+        const data = await res.json();
 
         // router.refresh();
         // router.push("/department");
 
-        const data = await getData();
-        setDepartments(data.results);
+        // const dataIndex = await getData();
+        // setDepartments(dataIndex.results);
 
-        return json;
+        toast({
+            title: data.message,
+            description: new Date().toLocaleString(),
+        });
+
+        console.log(data);
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
+
+        return data;
     };
 
     useEffect(() => {

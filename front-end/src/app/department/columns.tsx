@@ -23,6 +23,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { toast, useToast } from "@/components/ui/use-toast";
 
 export type Department = {
     id: number;
@@ -35,7 +36,11 @@ export type Department = {
 
 import Link from "next/link";
 
-const deleteDepartment = async (departmentReferenceNumber: string) => {
+const deleteDepartment = async (
+    departmentReferenceNumber: string,
+    showToast: any
+) => {
+    // const toast = useToast();
     try {
         const res = await fetch(
             `http://127.0.0.1:8000/api/department/delete/${departmentReferenceNumber}`,
@@ -44,15 +49,26 @@ const deleteDepartment = async (departmentReferenceNumber: string) => {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    Accept: "application/json",
                 },
             }
         );
         if (!res.ok) {
             throw new Error("Failed to delete department");
         }
-        window.location.reload();
+        showToast({
+            title: "Department deleted",
+        });
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
     } catch (error) {
         console.error(error);
+        showToast({
+            title: "Failed to delete department",
+            variant: "destructive",
+        });
     }
 };
 
@@ -96,6 +112,7 @@ export const columns: ColumnDef<Department>[] = [
         id: "actions",
         cell: ({ row }) => {
             const department = row.original;
+            const { toast } = useToast();
             return (
                 <Dialog>
                     <DropdownMenu>
@@ -126,11 +143,15 @@ export const columns: ColumnDef<Department>[] = [
                             <DropdownMenuSeparator />
 
                             <DropdownMenuItem
-                                onClick={() =>
+                                onClick={() => {
                                     deleteDepartment(
-                                        department.departmentReferenceNumber
-                                    )
-                                }
+                                        department.departmentReferenceNumber,
+                                        toast
+                                    );
+                                    // toast({
+                                    //     title: "Department deleted",
+                                    // });
+                                }}
                             >
                                 Delete
                             </DropdownMenuItem>

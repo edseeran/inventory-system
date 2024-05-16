@@ -25,9 +25,10 @@ interface ComboBoxProps {
     choices: Choice[];
     value: string;
     onChange: (value: string) => void;
+    className?: string;
 }
 
-const ComboBox = ({ choices, value, onChange }: ComboBoxProps) => {
+const ComboBox = ({ choices, value, onChange, className }: ComboBoxProps) => {
     return (
         <Popover>
             <PopoverTrigger asChild>
@@ -35,7 +36,7 @@ const ComboBox = ({ choices, value, onChange }: ComboBoxProps) => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px] justify-between"
+                    className={`w-[200px] justify-between ${className}`} // Modify this line
                 >
                     {value
                         ? choices.find((choice) => choice.value === value)

@@ -44,6 +44,7 @@ async function getData() {
     const res = await fetch("http://127.0.0.1:8000/api/inventory-form/list", {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Accept: "application/json",
         },
     });
 
@@ -59,25 +60,21 @@ const InventoryPage = () => {
     const [inventoryData, setInventoryData] = useState<Inventory[]>([]);
 
     useEffect(() => {
-
         const fetchInventoryData = async () => {
             const data = await getData();
             setInventoryData(data.results);
         };
 
         fetchInventoryData();
-
     }, []);
 
     return (
-
         <div>
             <h1 className="text-2xl font-bold text-left">Inventory List</h1>
             <DataTable columns={columns} data={inventoryData} />
         </div>
     );
 };
-
 
 const choicesFacilityType = [
     {
@@ -97,7 +94,6 @@ const choicesFacilityType = [
         label: "OTHERS",
     },
 ];
-
 
 const choicesItemStatus = [
     {
@@ -133,7 +129,6 @@ const formSchema = z
         amount: z.number(),
         dateIssued: z.string(),
         itemStatus: z.string(),
-
     })
     .required();
 
@@ -159,14 +154,17 @@ function InventoryFormPage() {
     });
 
     const createInventoryForm = async (values: z.infer<typeof formSchema>) => {
-        const res = await fetch("http://127.0.0.1:8000/api/inventory-form/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify(values),
-        });
+        const res = await fetch(
+            "http://127.0.0.1:8000/api/inventory-form/create",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify(values),
+            }
+        );
 
         if (!res.ok) {
             throw new Error("Failed to create inventory form");
@@ -210,8 +208,8 @@ function InventoryFormPage() {
                         <DialogHeader>
                             <DialogTitle>Create Inventory Form</DialogTitle>
                             <DialogDescription>
-                                Fill in the form below to create a new
-                                Inventory Form.
+                                Fill in the form below to create a new Inventory
+                                Form.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
@@ -250,8 +248,10 @@ function InventoryFormPage() {
                                                     FACILITY TYPE
                                                 </FormLabel>
                                                 <FormControl>
-                                                <ComboBox
-                                                        choices={choicesFacilityType}
+                                                    <ComboBox
+                                                        choices={
+                                                            choicesFacilityType
+                                                        }
                                                         value={form.getValues(
                                                             "facilityType"
                                                         )}
@@ -294,7 +294,7 @@ function InventoryFormPage() {
                                         render={({ field }) => (
                                             <div className="mb-4">
                                                 <FormLabel className="block text-gray-700 text-sm font-bold mb-2">
-                                                   AMOUNT
+                                                    AMOUNT
                                                 </FormLabel>
                                                 <FormControl>
                                                     <Input
@@ -322,12 +322,7 @@ function InventoryFormPage() {
 
             <DataTable columns={columns} data={inventoryForm} />
         </div>
-   );
-
-
-};
-
+    );
+}
 
 export default InventoryPage;
-
-

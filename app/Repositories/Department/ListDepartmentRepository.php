@@ -11,24 +11,22 @@ use App\Models\Department;
 
 class ListDepartmentRepository extends BaseRepository
 {
-    public function execute(){
+    public function execute()
+    {
 
-        if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN' || Auth::user()->role == 'CUSTODIAN'){
+        if (Auth::user()->role == 'ADMIN' || Auth::user()->role == 'SUPER ADMIN' || Auth::user()->role == 'CUSTODIAN') {
 
-            $department = Department::all()->map(function ($department){
+            $department = Department::all()->map(function ($department) {
                 return [
-                    'departmentCode' => $department->department_code
+                    'value' => $department->department_code,
+                    'label' => $department->department_code,
                 ];
             });
-
         } else {
 
             return response(['message: You do not have permission to view this page'], 401);
         }
 
-        return $this->success('List of Department Data', $this->getIndexData([$department]));
-
+        return $this->success('List of Department Data', $department);
     }
-
-
 }
