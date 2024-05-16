@@ -7,7 +7,8 @@ use App\Http\Requests\Department\CreateDepartmentRequest,
     App\Http\Requests\Department\ShowDepartmentRequest,
     App\Http\Requests\Department\IndexDepartmentRequest,
     App\Http\Requests\Department\UpdateDepartmentRequest,
-    App\Http\Requests\Department\DeleteDepartmentRequest;
+    App\Http\Requests\Department\DeleteDepartmentRequest,
+    App\Http\Requests\Department\ListDepartmentRequest;
 
 
 // * REPOSITORY
@@ -15,12 +16,13 @@ use App\Repositories\Department\CreateDepartmentRepository,
     App\Repositories\Department\ShowDepartmentRepository,
     App\Repositories\Department\IndexDepartmentRepository,
     App\Repositories\Department\UpdateDepartmentRepository,
+    App\Repositories\Department\ListDepartmentRepository,
     App\Repositories\Department\DeleteDepartmentRepository;
 
 
 class DepartmentController extends Controller
 {
-    protected $create, $index, $delete, $show, $update;
+    protected $create, $index, $delete, $show, $update, $list;
 
     // * CONSTRUCTOR INJECTION
     public function __construct(
@@ -30,6 +32,7 @@ class DepartmentController extends Controller
         DeleteDepartmentRepository              $delete,
         ShowDepartmentRepository                $show,
         UpdateDepartmentRepository              $update,
+        ListDepartmentRepository                $list,
 
     ) {
         $this->create   = $create;
@@ -37,6 +40,7 @@ class DepartmentController extends Controller
         $this->delete   = $delete;
         $this->show     = $show;
         $this->update   = $update;
+        $this->list     = $list;
     }
 
 
@@ -53,6 +57,10 @@ class DepartmentController extends Controller
     protected function index(IndexDepartmentRequest $request)
     {
         return $this->index->execute($request);
+    }
+    protected function list(ListDepartmentRequest $request)
+    {
+        return $this->list->execute($request);
     }
 
     protected function update(UpdateDepartmentRequest $request, $departmentReferenceNumber)

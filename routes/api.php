@@ -71,6 +71,7 @@ Route::group([
 
     $route->post('/create',                                         [DepartmentController::class, 'create']);
     $route->get('/index',                                           [DepartmentController::class, 'index']);
+    $route->get('/list',                                            [DepartmentController::class, 'list']);
     $route->delete('/delete/{id}',                                  [DepartmentController::class, 'delete']);
     $route->get('/show/{id}',                                       [DepartmentController::class, 'show']);
     $route->put('/update/{id}',                                     [DepartmentController::class, 'update']);
