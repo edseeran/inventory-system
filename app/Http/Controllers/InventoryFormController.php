@@ -27,7 +27,7 @@ class InventoryFormController extends Controller
     protected $create, $index, $list, $delete, $show, $update, $referenceNumber;
 
     // * CONSTRUCTOR INJECTION
-    public function __construct(
+    public function __construct( 
 
         CreateInventoryFormRepository              $create,
         IndexInventoryFormRepository               $index,
