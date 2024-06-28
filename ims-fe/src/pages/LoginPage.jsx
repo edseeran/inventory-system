@@ -1,21 +1,59 @@
-import spcflogo from "../assets/SPCF.png";
+import spcflogo from "../assets/logo.png";
 import backgroundImage from "../assets/spcfbg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import api from "../api/api";
+import getCsrfToken from "../api/getCsrfToken";
+import axios from "axios";
 
 export function LoginPage() {
+    const [employeeNumber, setEmployeeNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
+        // login
+        try {
+            const response = await axios.post(
+                "http://localhost:8000/api/account/login",
+                {
+                    employeeNumber: employeeNumber,
+                    password: password,
+                },
+                { headers: { "Content-Type": "application/json" } }
+            );
+
+            // Assuming the token is in response.data.token
+            const token = response.data.token;
+            if (token) {
+                localStorage.setItem("authToken", token);
+                setEmployeeNumber("");
+                setPassword("");
+                navigate("/home");
+            } else {
+                console.error("No token found in the response");
+            }
+        } catch (error) {
+            console.error("Error logging in", error);
+        }
+
+    };
+
     return (
         <>
-            <div className="relative flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+            <div className="relative flex min-h-screen min-w-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
                 <div
                     className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: `url(${backgroundImage})`,
                         backgroundSize: "cover",
-                        filter: "blur(6px) brightness(-)",
+                        filter: "blur(5px)",
                         zIndex: -1,
                     }}
                 >
-                    <div className="absolute inset-0 bg-black opacity-60"></div>
+                    <div className="absolute inset-0 bg-black opacity-80"></div>
                 </div>
                 <div className="relative z-10 flex flex-col items-center">
                     <div>
@@ -45,37 +83,43 @@ export function LoginPage() {
                             </Link>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form
+                        className="mt-8 space-y-6"
+                        action="#"
+                        method="POST"
+                        onSubmit={handleLogin}
+                    >
                         <div className="-space-y-px rounded-md shadow-sm">
                             <div>
                                 <label
                                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
-                                    for="email"
+                                    htmlFor="employeeNumber"
                                 >
-                                    Email address
+                                    Employee Number
                                 </label>
                                 <input
-                                    className="mb-2 h-10 rounded-md text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-t-md border border-[#a7abb1] bg-[#ffffff] px-3 py-2 text-[#ffffff] placeholder-[#f0c14b] focus:z-10 focus:border-[#f0c14b] focus:outline-none focus:ring-[#f0c14b] sm:text-sm"
-                                    id="email"
-                                    autocomplete="email"
-                                    required=""
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email address"
-                                    fdprocessedid="usapz"
+                                    className="mb-2 h-10 rounded-md text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-t-md border border-[#a7abb1] bg-[#ffffff] px-3 py-2 text-[#000000] placeholder-[#f0c14b] focus:z-10 focus:border-[#f0c14b] focus:outline-none focus:ring-[#f0c14b] sm:text-sm"
+                                    type="string"
+                                    value={employeeNumber}
+                                    placeholder="Employee Number"
+                                    onChange={(e) =>
+                                        setEmployeeNumber(e.target.value)
+                                    }
                                 />
                             </div>
                             <div>
                                 <label
                                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
-                                    for="password"
+                                    htmlFor="password"
                                 >
                                     Password
                                 </label>
                                 <input
-                                    className="h-10 rounded-md text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-b-md border border-[#a7abb1] bg-[#ffffff] px-3 py-2 text-[#ffffff] placeholder-[#f0c14b] focus:z-10 focus:border-[#f0c14b] focus:outline-none focus:ring-[#f0c14b] sm:text-sm"
-                                    id="password"
-                                    autocomplete="current-password"
+                                    className="h-10 rounded-md text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 relative block w-full appearance-none rounded-b-md border border-[#a7abb1] bg-[#ffffff] px-3 py-2 text-[#000000] placeholder-[#f0c14b] focus:z-10 focus:border-[#f0c14b] focus:outline-none focus:ring-[#f0c14b] sm:text-sm"
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                     required=""
                                     type="password"
                                     name="password"
@@ -98,7 +142,7 @@ export function LoginPage() {
                                 ></button>
                                 <input
                                     aria-hidden="true"
-                                    tabindex="-1"
+                                    tabIndex="-1"
                                     type="checkbox"
                                     value="on"
                                     name="remember-me"
@@ -114,12 +158,12 @@ export function LoginPage() {
                                 />
                                 <label
                                     className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2 block text-sm text-[#f0c14b]"
-                                    for="remember-me"
+                                    htmlFor="remember-me"
                                 >
                                     Remember me
                                 </label>
                             </div>
-                            <div className="text-sm">
+                            <div className="text-sm ml-11">
                                 <Link
                                     className="font-medium text-[#f0c14b] hover:text-[#f0c14b]/80"
                                     to="#"

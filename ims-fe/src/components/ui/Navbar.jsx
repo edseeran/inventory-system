@@ -4,6 +4,8 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import { Link } from "react-router-dom";
+// import spcflogo from "../assets/logo.png";
+import spcflogo from "../../assets/logo.png";
 
 export default function Component() {
     return (
@@ -13,7 +15,11 @@ export default function Component() {
                 className="flex items-center gap-2 text-lg font-semibold"
                 prefetch={false}
             >
-                <MountainIcon className="w-6 h-6" />
+                <img
+                    className="h-10 w-10 rounded-full"
+                    src={spcflogo}
+                    alt="logo"
+                />
                 <span className="sr-only">Acme Inc</span>
             </Link>
             <nav className="flex items-center gap-6 text-sm font-medium">
